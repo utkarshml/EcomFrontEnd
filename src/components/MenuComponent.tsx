@@ -7,6 +7,7 @@ import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 import sampleImge from "../images/prodcut6-300x300.webp"
 import React, { useEffect, useState } from "react"
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination"
+import Star from "./Star"
 
 const sampleData : MyCardProps[] = [
   {
@@ -76,12 +77,12 @@ const sampleData : MyCardProps[] = [
 
 function MenuComponent() {
   return (
-    <div className="grid grid-cols-4 gap-5">
-      <div className="assortment flex flex-col  items-start w-full">
+    <div className="grid lg:grid-cols-4 grid-cols-1  gap-5">
+      <div className="assortment hidden  lg:visible lg:flex flex-col  items-start w-full">
         <h3 className="scroll-m-20 w-full text-start border-primary border-b-2 text-2xl font-semibold tracking-tight">
           Assortment
         </h3>
-        <div className="flex flex-col gap-3 w-full mt-3">
+        <div className="flex flex-col  gap-3 w-full mt-3">
           <Link className="font-bold text-start w-full" to={"/"}>Value of the Day</Link>
           <Separator />
           <Link className="font-bold text-start w-full" to={"/"}>Top 100 Offers</Link>
@@ -101,11 +102,11 @@ function MenuComponent() {
         </div>
 
       </div>
-     <div className="shop-contaner col-span-3 ">
-     <h3 className="scroll-m-20 w-1/3 text-start border-primary border-b-2 text-2xl font-semibold tracking-tight">
+     <div className="shop-contaner p-4 lg:p-0 col-span-3 ">
+     <h3 className="scroll-m-20 w-1/3 px-3   text-start border-primary border-b-2 text-2xl font-semibold tracking-tight">
      Value of the Day
         </h3>
-        <div className="  p-5 grid gap-3 grid-cols-4 w-full">
+        <div className="  p-5 grid gap-3 lg:grid-cols-4 grid-cols-1 sm:grid-cols-2  md:grid-cols-3 w-full">
         {sampleData.map(i=>(
         <MyCard lable={i.lable} image={i.image} name={i.name} price={i.price} _id={i._id} />
         ))}
@@ -175,6 +176,10 @@ const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id}) =>{
     <AspectRatio>
       <img src={image} alt={name} />
     </AspectRatio>
+    <div className="py-3 flex">
+    <Star value={4} isEdit={false} colors={[ "red", "orange",]}/> <span className="text-gray-500">(24)</span>
+    </div>
+ 
    <h4 className="text-start" >${price}</h4>
    <div className="w-full flex justify-between my-3">
     <Button className="rounded-full transition invisible group-hover/item:visible" variant={"destructive"}><Link to={"/"}><ShoppingCart/></Link></Button>
