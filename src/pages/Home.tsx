@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { ModeToggle } from "../components/mode-toggle"
 import { Button } from "../components/ui/button"
-import { CircleUser, GitCompareArrows, Heart, MapPin, Search, ShoppingBag, ShoppingCart, Truck, UserRound } from "lucide-react"
+import { CircleUser, GitCompareArrows, Heart, MapPin, Search, Send, ShoppingBag, ShoppingCart, Truck, UserRound } from "lucide-react"
 import { Separator } from "../components/ui/separator"
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "../components/ui/menubar"
 import { AspectRatio } from "../components/ui/aspect-ratio"
@@ -16,6 +16,8 @@ import ban6 from "../images/ban-6.png"
 import ban7 from "../images/ban-7.png"
 import { Badge } from "../components/ui/badge"
 import MenuComponent from "../components/MenuComponent"
+import MiddleMenuBan from "../components/MiddleMenuBan"
+import CompaniesSection from "../components/CompaniesSection"
 
 
 
@@ -151,7 +153,26 @@ function Home() {
 </Card>
 </div>
 <MenuComponent/>
+ <MiddleMenuBan/>
+ <CompaniesSection/>
+ <div className="bg-primary flex flex-col justify-center rounded-md items-center h-40">
+   <div className="flex text-black "> 
+   <Send /> <h2 className="mx-3">Sign up to Newsletter</h2>
+   </div>
+   <div className="relative w-1/3 mt-5 flex-1 md:grow-0">
+      <Button className="absolute   hover:bg-gray-800 right-0 top-1/2 -translate-y-1/2 h-[48px] bg-black rounded-r-full rounded-l-none text-muted-foreground">
+      SignUp
+      </Button>
+            <Input
+              type="search"
+              placeholder="Enter Your Email..."
+              className="w-full rounded-full placeholder:text-gray-500 text-black bg-white  h-12 pl-8 md:w-[200px] lg:w-full"
+            />
+          </div>
+
+ </div>
 </>
+
   )
 }
 
