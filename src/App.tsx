@@ -15,7 +15,7 @@ const SignUp = lazy(()=> import("./pages/Signup"));
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/shop' element={<Shop/>} />
-      <Route path='/id' element={<Product/>} />
+      <Route path='/shop/id' element={<Product/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/signup' element={<SignUp/>} />
     </Routes>

@@ -10,6 +10,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 function Header() {
     const location = useLocation()
+    const paths = location.pathname.split('/');
+    console.log(paths)
     const isLogin : boolean = false;
   return (<>
     <div className="top-header hidden w-full p-0 lg:flex justify-between h-12 items-center">
@@ -47,10 +49,10 @@ function Header() {
      <div className="navigation-bar hidden  lg:block">
        <Menubar>
          <MenubarMenu>
-             <MenubarTrigger className={`${location.pathname == "/" ? "border-primary border-b-2" : ""}`}><Link to={"/"}>Home</Link></MenubarTrigger>
+             <MenubarTrigger className={`${location.pathname == "/"   ? "border-primary border-b-2" : ""}`}><Link to={"/"}>Home</Link></MenubarTrigger>
          </MenubarMenu>
          <MenubarMenu>
-         <MenubarTrigger className={`${location.pathname == "/shop" ? "border-primary border-b-2" : ""}`}><Link to={"/shop"}>Shop</Link></MenubarTrigger>
+         <MenubarTrigger className={`${location.pathname == "/shop" ||paths.includes("shop") ? "border-primary border-b-2" : ""}`}><Link to={"/shop"}>Shop</Link></MenubarTrigger>
          </MenubarMenu>
          <MenubarMenu>
            <MenubarTrigger>Category</MenubarTrigger>

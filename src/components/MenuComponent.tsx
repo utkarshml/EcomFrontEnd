@@ -171,7 +171,7 @@ export const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id})
    {font}
     </Link>
     </div>
-    <Link to={"/id"}>
+    <Link to={"/shop/id"}>
       <img src={image} alt={name} />
       </Link>
     <div className="py-3 flex">
