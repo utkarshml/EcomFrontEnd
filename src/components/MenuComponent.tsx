@@ -3,7 +3,6 @@ import { Separator } from "./ui/separator"
 import { ArrowRight, ChevronRight, ShoppingCart } from "lucide-react"
 import { Card } from "./ui/card"
 import { Button } from "./ui/button"
-import { AspectRatio } from "@radix-ui/react-aspect-ratio"
 import sampleImge from "../images/prodcut6-300x300.webp"
 import React, { useEffect, useState } from "react"
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination"
@@ -107,8 +106,8 @@ function MenuComponent() {
      Value of the Day
         </h3>
         <div className="  p-5 grid gap-3 lg:grid-cols-4 grid-cols-1 sm:grid-cols-2  md:grid-cols-3 w-full">
-        {sampleData.map(i=>(
-        <MyCard lable={i.lable} image={i.image} name={i.name} price={i.price} _id={i._id} />
+        {sampleData.map((i , index)=>(
+        <MyCard  key={index} lable={i.lable} image={i.image} name={i.name} price={i.price} _id={i._id} />
         ))}
      
         </div>
@@ -141,7 +140,7 @@ interface MyCardProps {
   _id : string
 }
 
-const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id}) =>{
+export const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id}) =>{
   const [font , setFont] = useState<string>("");
   useEffect(()=>{
     const fontTurncate = (font : string, maxWidth : number) : string =>{
@@ -162,8 +161,8 @@ const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id}) =>{
 
 
   return (
-    <Link className=" group/item hover:z-[999]" to={"/id"}>
-    <Card   className=" relative bg-secondary transition   group-hover/item:scale-110 col-span-1 p-3 shadow-lg h-auto m-2 bg-cover">
+   
+    <Card   className=" group/item hover:z-[999] relative bg-secondary transition  flex flex-col  group-hover/item:scale-110 col-span-1 p-3 shadow-lg h-auto m-2 bg-cover">
     <Button asChild className="w-full" variant={"link"}><Link to={"/"}>
     {lable}
     </Link></Button>
@@ -172,10 +171,9 @@ const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id}) =>{
    {font}
     </Link>
     </div>
-
-    <AspectRatio>
+    <Link to={"/id"}>
       <img src={image} alt={name} />
-    </AspectRatio>
+      </Link>
     <div className="py-3 flex">
     <Star value={4} isEdit={false} colors={[ "red", "orange",]}/> <span className="text-gray-500">(24)</span>
     </div>
@@ -193,7 +191,7 @@ const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id}) =>{
   <Link className="py-1 hover:bg-primary  rounded-bl-md rounded-br-md text-foreground" to={"/"}>Favourite</Link>
  </div>
  </Card>
- </Link>
+
   )
 }
 export default MenuComponent

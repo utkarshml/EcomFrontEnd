@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function Footer() {
   return (
-    <footer className=" footer grid lg:grid-cols-2 grid-cols-1  my-8 min-h-16 -p-8 bg-secondary">
+    <footer className=" footer grid p-3 lg:grid-cols-2 grid-cols-1  mt-8 min-h-16 -p-8 bg-secondary">
         <div className="flex flex-col items-start justify-start">
         <div className="p-6">
           <h4 className="scroll-m-20 text-3xl font-semibold tracking-tight">
@@ -18,7 +18,7 @@ function Footer() {
         </div>
         <span className="mx-6  mt-5 pt font-bold">Contact Info</span>
         <span className="mx-6 font-light py-2">17 Princess Road, London, Greater London NW1 8JR, UK</span>
-        <div className="flex gap-5 mx-6 mt-6 mb-12">
+        <div className="flex justify-center gap-5 sm:m-[1.5rem auto] mx-6 mt-6 mb-12">
          <Link className="hover:text-blue-600" to={"/"}> <Facebook /></Link>
          <Link className="hover:text-green-600" to={"/"}> <MessageCircle/></Link>
          <Link className="hover:text-blue-500" to={"/"}> <Linkedin /></Link>
@@ -26,7 +26,7 @@ function Footer() {
          <Link className="hover:text-pink-500" to={"/"}><Instagram /> </Link>
         </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex md:justify-center sm:justify-center items-center">
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
                   <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Find It Fast</h2>

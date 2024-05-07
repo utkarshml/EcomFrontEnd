@@ -8,7 +8,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <ThemeProvider defaultTheme='dark'   storageKey="vite-ui-theme" >
      <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
   </ThemeProvider>
 
 )

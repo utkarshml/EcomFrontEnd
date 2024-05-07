@@ -10,20 +10,31 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 function Header() {
     const location = useLocation()
+    const isLogin : boolean = false;
   return (<>
     <div className="top-header hidden w-full p-0 lg:flex justify-between h-12 items-center">
     <Link to={"/"}>Welcome to Worldwide Electronics Store</Link>
-    <div className="flex h-5  items-center">
-      <Button variant={"link"} asChild ><Link to={"/"}><MapPin className="mx-1 size-4" /> Location</Link></Button>
-      <Separator orientation="vertical" />
-      <Button variant={"link"} asChild ><Link to={"/"}><Truck className="mx-1 size-4" /> Track your Order</Link></Button>
-      <Separator orientation="vertical" />
-      <Button variant={"link"} asChild ><Link to={"/"}><ShoppingBag className="mx-1 size-4" /> Shop</Link></Button>
-      <Separator orientation="vertical" />
-      <Button variant={"link"} asChild ><Link to={"/"}><CircleUser className="mx-1 size-4" /> My Account</Link></Button>
-      <Separator orientation="vertical" />
-      <div className="m-4"><ModeToggle /></div>
-    </div>
+    {isLogin ? 
+         <div className="flex h-5  items-center">
+         <Button variant={"link"} asChild ><Link to={"/"}><MapPin className="mx-1 size-4" /> Location</Link></Button>
+         <Separator orientation="vertical" />
+         <Button variant={"link"} asChild ><Link to={"/"}><Truck className="mx-1 size-4" /> Track your Order</Link></Button>
+         <Separator orientation="vertical" />
+         <Button variant={"link"} asChild ><Link to={"/shop"}><ShoppingBag className="mx-1 size-4" /> Shop</Link></Button>
+         <Separator orientation="vertical" />
+         <Button variant={"link"} asChild ><Link to={"/"}><CircleUser className="mx-1 size-4" /> My Account</Link></Button>
+         <Separator orientation="vertical" />
+         <div className="m-4"><ModeToggle /></div>
+       </div> : 
+         <div className="flex h-5  items-center">
+         <Button variant={"link"} asChild ><Link to={"/login"}> Login</Link></Button>
+         <Separator orientation="vertical" />
+         <Button variant={"link"} asChild ><Link to={"/signup"}>SignUp</Link></Button>
+         <Separator orientation="vertical" />
+         <div className="m-4"><ModeToggle /></div>
+       </div>
+  }
+
   </div>
      <header className="flex items-center justify-between">
           <SliderMenu/>
@@ -33,15 +44,13 @@ function Header() {
          elctro<span className="text-primary ">.</span>
        </h4>
      </div>
-     <div className="navigation-bar invisible lg:visible">
+     <div className="navigation-bar hidden  lg:block">
        <Menubar>
          <MenubarMenu>
-           <Link to={"/"} >
-             <MenubarTrigger className={`${location.pathname == "/" ? "border-primary border-b-2" : ""}`}>Home</MenubarTrigger>
-           </Link>
+             <MenubarTrigger className={`${location.pathname == "/" ? "border-primary border-b-2" : ""}`}><Link to={"/"}>Home</Link></MenubarTrigger>
          </MenubarMenu>
          <MenubarMenu>
-           <MenubarTrigger>About</MenubarTrigger>
+         <MenubarTrigger className={`${location.pathname == "/shop" ? "border-primary border-b-2" : ""}`}><Link to={"/shop"}>Shop</Link></MenubarTrigger>
          </MenubarMenu>
          <MenubarMenu>
            <MenubarTrigger>Category</MenubarTrigger>
@@ -74,21 +83,20 @@ function Header() {
          </MenubarMenu>
        </Menubar>
      </div>
-     <div className="header-icons flex gap-5">
+     <div className="header-icons mr-4 flex gap-5">
        <Link to={"/"}>
          <GitCompareArrows className="size-5" />
        </Link>
        <Link to={"/"}>
          <Heart className="size-5" />
        </Link>
-        <PopoverCom/>
+        <PopoverCom isLogin={isLogin}/>
        <Link className="flex items-center text-5" to={"/"}>
          <span className="relative mr-3">
            <ShoppingCart className="size-5" />
            <Badge style={{ width: "1rem", height: "1rem" }} className="absolute -top-2 -right-3 " variant={"destructive"}>0</Badge>
          </span>
-
-         $12.00
+      
        </Link>
      </div>
    </header>
@@ -107,12 +115,10 @@ const SliderMenu = ()=>{
       <SheetTitle>Menu</SheetTitle>
       <Menubar className="flex flex-col items-start">
          <MenubarMenu>
-           <Link to={"/"} >
-             <MenubarTrigger className={`${location.pathname == "/" ? "border-primary border-b-2" : ""}`}>Home</MenubarTrigger>
-           </Link>
+         <MenubarTrigger className={`${location.pathname == "/" ? "border-primary border-b-2" : ""}`}><Link to={"/"}>Home</Link></MenubarTrigger>
          </MenubarMenu>
          <MenubarMenu>
-           <MenubarTrigger>About</MenubarTrigger>
+         <MenubarTrigger className={`${location.pathname == "/shop" ? "border-primary border-b-2" : ""}`}><Link to={"/shop"}>Shop</Link></MenubarTrigger>
          </MenubarMenu>
          <MenubarMenu>
            <MenubarTrigger>Category</MenubarTrigger>
@@ -150,21 +156,30 @@ const SliderMenu = ()=>{
 
      )
 }
+interface PopoverProp {
+  isLogin : boolean
+}
 
-function PopoverCom() {
+function PopoverCom({isLogin} : PopoverProp) {
   return (
     <Popover>
     <PopoverTrigger className="lg:hidden"><UserRound className="size-5" /></PopoverTrigger>
     <PopoverContent className="h-[15rem]">
     <div className="top-header  w-full p-0 flex-col  justify-between h-12 items-center">
-    <div className="flex h-5 flex-col  items-center">
-    <Button variant={"link"} asChild ><Link to={"/"}><CircleUser className="mx-1 size-4" /> My Account</Link></Button>
-      <Button variant={"link"} asChild ><Link to={"/"}><Truck className="mx-1 size-4" /> Track your Order</Link></Button>
-      <Button variant={"link"} asChild ><Link to={"/"}><MapPin className="mx-1 size-4" /> Location</Link></Button>
-
-      <Button variant={"link"} asChild ><Link to={"/"}><ShoppingBag className="mx-1 size-4" /> Shop</Link></Button>   
-      <div className="m-4"><ModeToggle /></div>
-    </div>
+      {
+        isLogin ?     <div className="flex h-5 flex-col  items-center">
+        <Button variant={"link"} asChild ><Link to={"/"}><CircleUser className="mx-1 size-4" /> My Account</Link></Button>
+          <Button variant={"link"} asChild ><Link to={"/"}><Truck className="mx-1 size-4" /> Track your Order</Link></Button>
+          <Button variant={"link"} asChild ><Link to={"/"}><MapPin className="mx-1 size-4" /> Location</Link></Button>
+          <Button variant={"link"} asChild ><Link to={"/shop"}><ShoppingBag className="mx-1 size-4" /> Shop</Link></Button>   
+          <div className="m-4"><ModeToggle /></div>
+        </div> : 
+         <div className="flex h-5 flex-col  items-center">
+           <Button variant={"link"} asChild ><Link to={"/login"}><Truck className="mx-1 size-4" />Login</Link></Button>
+           <Button variant={"link"} asChild ><Link to={"/signup"}><MapPin className="mx-1 size-4" /> SignUp</Link></Button>
+           <div className="m-4"><ModeToggle /></div>
+         </div> 
+      }
   </div>
     </PopoverContent>
   </Popover>
