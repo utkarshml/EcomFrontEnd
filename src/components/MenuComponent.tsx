@@ -162,7 +162,7 @@ export const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id})
 
   return (
    
-    <Card   className=" group/item hover:z-[999] relative bg-secondary transition  flex flex-col  group-hover/item:scale-110 col-span-1 p-3 shadow-lg h-auto m-2 bg-cover">
+    <Card   className=" group/item hover:z-[999]  relative bg-secondary transition  flex flex-col  group-hover/item:scale-110 col-span-1 p-3 shadow-lg h-auto m-2 bg-cover">
     <Button asChild className="w-full" variant={"link"}><Link to={"/"}>
     {lable}
     </Link></Button>
@@ -185,10 +185,6 @@ export const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id})
    </div>
     <div className="flex group/edit invisible group-hover/item:visible">
   <Link to={"/"}></Link>
- </div>
- <div className="flex bg-secondary invisible group-hover/item:visible absolute flex-col left-0 -bottom-[22%] z-50 rounded-lg gap-3 border-primary border w-full" >
-  <Link className=" hover:bg-primary rounded-tl-md rounded-tr-md py-1 text-foreground" to={"/"}>Compair</Link>
-  <Link className="py-1 hover:bg-primary  rounded-bl-md rounded-br-md text-foreground" to={"/"}>Favourite</Link>
  </div>
  </Card>
 

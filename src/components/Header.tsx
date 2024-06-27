@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { Button } from "./ui/button"
 import { Separator } from "./ui/separator"
-import { CircleUser, GitCompareArrows, Heart, MapPin, Menu, ShoppingBag, ShoppingCart, Truck, UserRound } from "lucide-react"
+import { CircleUser, MapPin, Menu, ShoppingBag, ShoppingCart, Truck, UserRound } from "lucide-react"
 import { ModeToggle } from "./mode-toggle"
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "./ui/menubar"
 import { Badge } from "./ui/badge"
@@ -12,19 +12,16 @@ function Header() {
     const location = useLocation()
     const paths = location.pathname.split('/');
     console.log(paths)
-    const isLogin : boolean = false;
+    const isLogin : boolean = true;
+
   return (<>
     <div className="top-header hidden w-full p-0 lg:flex justify-between h-12 items-center">
     <Link to={"/"}>Welcome to Worldwide Electronics Store</Link>
     {isLogin ? 
          <div className="flex h-5  items-center">
-         <Button variant={"link"} asChild ><Link to={"/"}><MapPin className="mx-1 size-4" /> Location</Link></Button>
-         <Separator orientation="vertical" />
-         <Button variant={"link"} asChild ><Link to={"/"}><Truck className="mx-1 size-4" /> Track your Order</Link></Button>
-         <Separator orientation="vertical" />
          <Button variant={"link"} asChild ><Link to={"/shop"}><ShoppingBag className="mx-1 size-4" /> Shop</Link></Button>
          <Separator orientation="vertical" />
-         <Button variant={"link"} asChild ><Link to={"/"}><CircleUser className="mx-1 size-4" /> My Account</Link></Button>
+         <Button variant={"link"} asChild ><Link to={"/account"}><CircleUser className="mx-1 size-4" /> My Account</Link></Button>
          <Separator orientation="vertical" />
          <div className="m-4"><ModeToggle /></div>
        </div> : 
@@ -86,12 +83,6 @@ function Header() {
        </Menubar>
      </div>
      <div className="header-icons mr-4 flex gap-5">
-       <Link to={"/"}>
-         <GitCompareArrows className="size-5" />
-       </Link>
-       <Link to={"/"}>
-         <Heart className="size-5" />
-       </Link>
         <PopoverCom isLogin={isLogin}/>
        <Link className="flex items-center text-5" to={"/"}>
          <span className="relative mr-3">

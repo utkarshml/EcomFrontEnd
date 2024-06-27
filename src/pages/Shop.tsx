@@ -3,7 +3,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import ModifyBreadCrum from "../components/ModifyBreadCrum"
 
-import { GitCompareArrows, Grid, Heart, List } from "lucide-react"
+import {  Grid, List } from "lucide-react"
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select"
 
@@ -152,10 +152,6 @@ const CardForList = ({category , discription , name , image , _id , price} : MyC
            <h3>{price}</h3>
 
            <Button className="rounded-full  w-1/2" variant={"default"}>Add Cart</Button>
-           <div className="w-fit">
-            <Button variant={"link"}><Heart className="mx-2"/> Wishlist </Button>
-            <Button variant={"link"}><GitCompareArrows className="mx-2"/> Compaire </Button>
-           </div>
           </div>
     </Card>
   )

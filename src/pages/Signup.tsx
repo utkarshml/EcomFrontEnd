@@ -3,10 +3,13 @@ import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import Header from "../components/Header"
 
 function Login() {
   const [show , setShow] = useState<boolean>(false)
   return (
+    <>
+    <Header/>
    <div className='grid  grid-cols-2 gap-3 min-h-[100vh]'>
       <div   className="col-span-2 text-primary relative lg:flex flex-col justify-center items-center py-5 hidden  w-full lg:col-span-1">
         <div onClick={()=> window.history.back()} className="u absolute top-12 left-4 cursor-pointer flex gap-2">
@@ -51,7 +54,7 @@ function Login() {
     </Link></Button>
    </div>
    </div>
-   
+   </>
 
   )
 }
