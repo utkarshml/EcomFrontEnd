@@ -80,7 +80,7 @@ function ReviewBox() {
 const ReviewTemplate = () => {
     const [edit , isEdit ] = useState<boolean>(false)
     const parRef = useRef<HTMLParagraphElement>(null)
-    const inputRef = useRef<HTMLTextAreaElement>();
+    const inputRef = useRef<HTMLTextAreaElement>(null);
     const [value , setValue] = useState<string>();
     const editHandle = () => {
         if(edit == false){

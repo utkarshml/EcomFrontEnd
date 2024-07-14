@@ -2,27 +2,28 @@
 import { useState } from 'react'
 import Header from '../components/Header'
 import { Button } from '../components/ui/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../../src/components/ui/dialog"
+
 
 import img from "../images/Profile-vector.jpg"
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../components/ui/dialog';
+import FileInputButton from '../components/FileInputButton';
 
 const InputStyle: string = ' cursor-pointer foucs:border-none p-3 active:outline-none focus-visible:outline-primary px-5';
 function MyProfile() {
+
   const [updated, setUpdate] = useState<boolean>(true)
+  const [file , setFile] = useState<string>("https://static.vecteezy.com/system/resources/thumbnails/005/720/479/small/banner-abstract-background-board-for-text-and-message-design-modern-free-vector.jpg");
+  const fileTakeForBanner = (file : string) => {
+    setFile(file)
+}
+
   return (
     <>
       <Header />
-
       <div className='relative  '>
-        <div className="w-full">
-          <input type='file' />
-          <img src="https://static.vecteezy.com/system/resources/thumbnails/005/720/479/small/banner-abstract-background-board-for-text-and-message-design-modern-free-vector.jpg" alt="Banner" className="w-full object-cover  h-[15rem]" />
+        <div className="w-full ">
+           <FileInputButton classStyle='absolute bottom-2 right-2 ' fileInput={fileTakeForBanner}/>
+          <img src={file} alt="Banner" className="w-full object-cover  h-[15rem]" />
         </div>
         <UserDetails updated={updated} update={setUpdate} />
       </div>
@@ -44,22 +45,26 @@ const UserDetails = ({ update, updated }: prop) => {
   const [Comfirm , setComfirm] = useState<string>()
   const [oldPass , setOldPass] = useState<string>()
   const [gender, setGender] = useState<string>("She/Her");
+  const [profile , setProfile] = useState<string>(img);
+  const fileTakeForProfile = (file : string) => {
+    setProfile(file)
+  }
   return (
     <>
       <div className='grid absolute top-24 w-full grid-cols-1 lg:mx-8 lg:grid-cols-3  '>
         <div className='col-span-1 flex  lg:items-start items-center flex-col'>
           <div className='w-full'>
-
-            <img className='h-[20rem] w-[20rem] m-auto lg:ms-0 rounded-full border-2 border-primary' src={img} alt="" />
+            <FileInputButton  classStyle='absolute top-0' fileInput={fileTakeForProfile}/>
+            <img className='h-[20rem] w-[20rem] m-auto lg:ms-0 rounded-full border-2 border-primary' src={profile} alt="" />
           </div>
           <span className='text-2xl font-bold mt-4'><span>{name}</span> <span>{last}</span></span>
           <span className='dar dark:text-gray-400 font-bold text-gray-700'>{gender}</span>
           <Dialog>
             <DialogTrigger className='mt-5' asChild><Button>Change Password</Button></DialogTrigger>
             <DialogContent>
-              <DialogHeader>
+              <div>
                 <DialogTitle>Change Password</DialogTitle>
-              </DialogHeader>
+              </div>
               <div className="input-old-password m-2  flex flex-col items-start">
               <label className='mb-2 font-bold' htmlFor="old-pass ">Old Password</label>
               <input onChange={(e)=> setOldPass(e.target.value)}  value={oldPass} required id='old-pass' className={`bg-secondary last-name w-full h-9 rounded-md ${InputStyle}`} type="text" />

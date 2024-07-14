@@ -7,6 +7,9 @@ import sampleImge from "../images/prodcut6-300x300.webp"
 import React, { useEffect, useState } from "react"
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination"
 import Star from "./Star"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../App/store"
+import { AddCart } from "../features/CartSlice"
 
 const sampleData : MyCardProps[] = [
   {
@@ -142,6 +145,7 @@ interface MyCardProps {
 
 export const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id}) =>{
   const [font , setFont] = useState<string>("");
+  const dispatch : AppDispatch = useDispatch()
   useEffect(()=>{
     const fontTurncate = (font : string, maxWidth : number) : string =>{
       let  str : string = "";
@@ -158,7 +162,12 @@ export const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id})
     }
     setFont(fontTurncate(name , 25));
   },[name])
-
+const AddCartFunction = () =>{
+    
+      dispatch(AddCart({
+        name , _id , price, image,lable
+      }))
+}
 
   return (
    
@@ -180,7 +189,7 @@ export const MyCard:React.FC<MyCardProps> = ({lable ,image , name , price ,_id})
  
    <h4 className="text-start" >${price}</h4>
    <div className="w-full flex justify-between my-3">
-    <Button className="rounded-full transition invisible group-hover/item:visible" variant={"destructive"}><Link to={"/"}><ShoppingCart/></Link></Button>
+    <Button asChild onClick={AddCartFunction} className="rounded-full transition invisible group-hover/item:visible" variant={"destructive"}><Link to={"/"}><ShoppingCart/></Link></Button>
    <Button asChild variant={"default"}><Link to={`/${_id}`}><ArrowRight /></Link></Button>
    </div>
     <div className="flex group/edit invisible group-hover/item:visible">

@@ -7,12 +7,18 @@ import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, Me
 import { Badge } from "./ui/badge"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
+import { useSelector } from "react-redux"
+import { RootState } from "../App/store"
+
 
 function Header() {
     const location = useLocation()
     const paths = location.pathname.split('/');
-    console.log(paths)
-    const isLogin : boolean = true;
+
+     const isLogin : boolean = true;
+    const CartCount  : number = useSelector((state : RootState)=>{
+      return state.cart.length
+    })
 
   return (<>
     <div className="top-header hidden w-full p-0 lg:flex justify-between h-12 items-center">
@@ -26,7 +32,7 @@ function Header() {
          <div className="m-4"><ModeToggle /></div>
        </div> : 
          <div className="flex h-5  items-center">
-         <Button variant={"link"} asChild ><Link to={"/login"}> Login</Link></Button>
+         <Button  variant={"link"} asChild ><Link to={"/login"}> Login</Link></Button>
          <Separator orientation="vertical" />
          <Button variant={"link"} asChild ><Link to={"/signup"}>SignUp</Link></Button>
          <Separator orientation="vertical" />
@@ -84,10 +90,10 @@ function Header() {
      </div>
      <div className="header-icons mr-4 flex gap-5">
         <PopoverCom isLogin={isLogin}/>
-       <Link className="flex items-center text-5" to={"/"}>
+       <Link  className="flex items-center text-5" to={"/cart"}>
          <span className="relative mr-3">
            <ShoppingCart className="size-5" />
-           <Badge style={{ width: "1rem", height: "1rem" }} className="absolute -top-2 -right-3 " variant={"destructive"}>0</Badge>
+           <Badge style={{ width: "1rem", height: "1rem" }} className="absolute -top-2 -right-3 " variant={"destructive"}>{CartCount}</Badge>
          </span>
       
        </Link>
@@ -100,10 +106,11 @@ function Header() {
 const SliderMenu = ()=>{
     return (
      <Sheet>
-  <SheetTrigger className="lg:hidden"><Button className="ml-4" variant={"secondary"}>
+  <SheetTrigger className="lg:hidden">
+    <div  className="ml-4 bg-secondary p-2 rounded-md" >
         <Menu />
-        </Button></SheetTrigger>
-  <SheetContent side={"left"}>
+        </div></SheetTrigger>
+  <SheetContent aria-describedby="sideMenu" side={"left"}>
     <SheetHeader>
       <SheetTitle>Menu</SheetTitle>
       <Menubar className="flex flex-col items-start">
@@ -112,32 +119,6 @@ const SliderMenu = ()=>{
          </MenubarMenu>
          <MenubarMenu>
          <MenubarTrigger className={`${location.pathname == "/shop" ? "border-primary border-b-2" : ""}`}><Link to={"/shop"}>Shop</Link></MenubarTrigger>
-         </MenubarMenu>
-         <MenubarMenu>
-           <MenubarTrigger>Category</MenubarTrigger>
-           <MenubarContent>
-             <MenubarItem>
-               New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-             </MenubarItem>
-             <MenubarItem>New Window</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Share</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Print</MenubarItem>
-           </MenubarContent>
-         </MenubarMenu>
-         <MenubarMenu>
-           <MenubarTrigger>Feature</MenubarTrigger>
-           <MenubarContent>
-             <MenubarItem>
-               New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-             </MenubarItem>
-             <MenubarItem>New Window</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Share</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Print</MenubarItem>
-           </MenubarContent>
          </MenubarMenu>
          <MenubarMenu>
            <MenubarTrigger>Contact us </MenubarTrigger>
