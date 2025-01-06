@@ -1,12 +1,19 @@
-
 import { Link } from "react-router-dom"
-import AdminSideBar from "../components/AdminSideBar"
-import { OrderItem, OrderItemType } from "../types/OrderItemTypes"
-import Admin_header from "../components/Admin_header"
-import { useState } from "react"
-import styles from "../styles/transaction.module.scss"
-import { FaArrowLeft } from "react-icons/fa"
 
+import Admin_header from "../../../components/Admin_header"
+import { useState } from "react"
+import styles from "../../styles/transaction.module.scss"
+import { FaArrowLeft } from "react-icons/fa"
+import AdminSideBar from "../../../components/AdminSideBar"
+
+export interface OrderItemType {
+  name: string;
+  price: number;
+  image: string;
+  qty: number;
+  _id: string;
+  subtotal: number;
+}
 
 
 const sampleOrder : OrderItemType[] = [{
@@ -31,9 +38,9 @@ const sampleOrder : OrderItemType[] = [{
 const PrductManage  = () => {
   // const [order , setOrder]= useState<OrderItemType[]>(sampleOrder);
   const[toggle , setToggle] = useState<boolean>(false);
-  const [orderInfo , setOrderInfo] = useState<OrderItem>({
+  const [orderInfo , setOrderInfo] = useState({
     name: "John Doe",
-    address: "123 Main Street",
+    address: "123 Main Street", 
     city: "Anytown",
     state: "Anystate",
     country: "Somecountry",
@@ -44,9 +51,9 @@ const PrductManage  = () => {
     discount: 5,
     total: 105,
     tax : 9,
-    orders: [],
+    orders: [] as OrderItemType[],
     _id: "efjekwfjwlej"
-})
+  })
 const statusHandler = () =>{
   setOrderInfo((prev)=>(
    { ...prev , status : prev.status === "processing" ? "shipped" : "delivered" }

@@ -1,11 +1,12 @@
 
 import { ChangeEvent, useState } from "react";
-import AdminSideBar from "../components/AdminSideBar";
-import Admin_header from "../components/Admin_header";
+
 import styles from "../styles/userManage.module.scss"
 import { FaArrowLeft } from "react-icons/fa";
 
 import sampleImage from "../image/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg";
+import Admin_header from "../../../components/Admin_header";
+import AdminSideBar from "../../../components/AdminSideBar";
 
 
 function UserManage() {

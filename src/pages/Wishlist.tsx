@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from '../components/Header'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table'
 import { useSelector } from 'react-redux'

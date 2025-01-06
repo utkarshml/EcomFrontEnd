@@ -1,8 +1,8 @@
 
 import { ChangeEvent, useState } from "react";
-import AdminSideBar from "../components/AdminSideBar";
-import Admin_header from "../components/Admin_header";
-import styles from "../styles/addproduct.module.scss"
+import AdminSideBar from "../../../components/AdminSideBar";
+import Admin_header from "../../../components/Admin_header";
+import styles from "../../styles/addproduct.module.scss"
 import { FaArrowLeft } from "react-icons/fa";
 
 

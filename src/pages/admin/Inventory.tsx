@@ -1,4 +1,3 @@
-
 import { ColumnDef } from "@tanstack/react-table"
 import GetTable from "../../components/Table";
 import { productMock } from "../../assets/product_mock"
@@ -22,10 +21,12 @@ const productColumn: ColumnDef<ProductType>[] = [
     accessorKey: "photo",
     cell: ({ cell }) => {
       return <img
-        style={{ height: "3.5rem", 
-                 width: "3.5rem" }}
-         src={cell.row.getValue("photo")} 
-         alt={cell.row.getValue("name")} />;
+        style={{
+          height: "3.5rem",
+          width: "3.5rem"
+        }}
+        src={cell.row.getValue("photo")}
+        alt={cell.row.getValue("name")} />;
     },
   },
   {
@@ -55,22 +56,22 @@ const productColumn: ColumnDef<ProductType>[] = [
 
 
 function Inventory() {
- const [toggle ,setToggle] = useState<boolean>(false);
-  const Handler = () =>{
-     setToggle(!toggle);
+  const [toggle, setToggle] = useState<boolean>(false);
+  const Handler = () => {
+    setToggle(!toggle);
   }
   const onclose = () => {
-      setToggle(false);
+    setToggle(false);
   }
   return (
     <>
       <div className="container">
         <AdminSideBar onClose={onclose} reacted={toggle} />
         <main>
-          <Admin_header onClick={Handler}  />
+          <Admin_header onClick={Handler} />
           <div style={{
             padding: "2rem 1.5rem",
-            overflowX : "auto"
+            overflowX: "auto"
           }}>
             <h2 style={
               {
@@ -85,7 +86,7 @@ function Inventory() {
           <FaPlus />
         </Link>
       </div>
-    
+
     </>
 
   )
