@@ -20,10 +20,10 @@ function Checkout() {
   return (
     <>
     <Header/>
-    <div  className="grid grid-cols-3">
-        <div className="col-span-2 p-5 ">
+    <div  className="grid grid-cols-1 px-5 lg:grid-cols-3">
+        <div className=" min-h-[20rem] lg:col-span-2 p-5 ">
             <h3 className="text-4xl text-primary text-start font-bold  ">Cart</h3>
-            <div className="p-2">
+            <div className="p-2 h-full ">
              <CartCard/>
             </div>
         </div>
@@ -67,33 +67,35 @@ const dispatch = useDispatch();
 })
 
     return (
-        <>
-       <Table className="px-4">
-  <TableHeader>
-    <TableRow>
-      <TableHead className="w-[100px]">Product</TableHead>
-      <TableHead>Name</TableHead>
-      <TableHead>Qty</TableHead>
-      <TableHead className="text-right">Amount</TableHead>
-      <TableHead className="text-right">Total</TableHead>
-      <TableHead className="text-right">Delete</TableHead>
-      
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    {CartData.map(item =>(
-          <TableRow key={item.item._id}>
-          <TableCell className="font-medium"><img src={item.item.image} alt="" className="rounded-md" /></TableCell>
-          <TableCell className="text-start font-bold">{item.item.name}</TableCell>
-          <TableCell className="text-start">{item.totalItems}</TableCell>
-          <TableCell className="text-right">${item.item.price}</TableCell>
-          <TableCell className="text-right">${item.totalPrice}</TableCell>
-          <TableCell className="text-right"><Button onClick={()=>dispatch(DeleteCart(item.item))}><Trash2 /></Button></TableCell>
-        </TableRow>
-    ))}
-  </TableBody>
-</Table>
-
+        <>{
+          CartData.length > 0 ?  <Table className="px-4">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Product</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Qty</TableHead>
+              <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="text-right">Total</TableHead>
+              <TableHead className="text-right">Delete</TableHead>
+              
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {CartData.map(item =>(
+                  <TableRow key={item.item._id}>
+                  <TableCell className="font-medium"><img src={item.item.image} alt="" className="rounded-md" /></TableCell>
+                  <TableCell className="text-start font-bold">{item.item.name}</TableCell>
+                  <TableCell className="text-start">{item.totalItems}</TableCell>
+                  <TableCell className="text-right">${item.item.price}</TableCell>
+                  <TableCell className="text-right">${item.totalPrice}</TableCell>
+                  <TableCell className="text-right"><Button onClick={()=>dispatch(DeleteCart(item.item))}><Trash2 /></Button></TableCell>
+                </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        : <div className="h-full flex justify-center items-center"><h1  className="text-2xl font-bold opacity-35  w-full" >Nothing Here....</h1></div> 
+        }
+       
         </>
     )
 }

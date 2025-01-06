@@ -1,0 +1,23 @@
+@import "mixin";
+.admin-header {
+    @include Flex(row , flex-end  , center , unset , 0 );
+    position: relative;
+    height: 3.5rem;
+    // exist in app.scss
+    .handburger {
+        display: none!important;
+    }
+    // end
+    .notification-btn {
+        padding:  0 2rem;
+        border: none;
+        background: none;
+        height: 100%;
+        margin: 0.5rem;
+        position: relative;
+        svg {
+            @include posCenter();
+            scale: 1.11;
+        }
+    }
+}

@@ -74,7 +74,7 @@ function Filter() {
         }
     }
     return (
-        <div className="p-3" >
+        <div className="p-3 w-full" >
             <div className="w-full">
                 <h2 className="w-1/2 text-start text-2xl pr-4 border-b-2 border-primary ">
                     Filters

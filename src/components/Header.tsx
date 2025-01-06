@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom"
 import { Button } from "./ui/button"
 import { Separator } from "./ui/separator"
-import { CircleUser, MapPin, Menu, ShoppingBag, ShoppingCart, Truck, UserRound } from "lucide-react"
+import { CircleUser, Heart, MapPin, Menu, ShoppingBag, ShoppingCart, Truck, UserRound } from "lucide-react"
 import { ModeToggle } from "./mode-toggle"
-import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "./ui/menubar"
+import { Menubar, MenubarMenu, MenubarTrigger } from "./ui/menubar"
 import { Badge } from "./ui/badge"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
@@ -21,7 +21,7 @@ function Header() {
     })
 
   return (<>
-    <div className="top-header hidden w-full p-0 lg:flex justify-between h-12 items-center">
+    <div className="top-header  hidden w-full px-3 lg:flex justify-between h-12 items-center">
     <Link to={"/"}>Welcome to Worldwide Electronics Store</Link>
     {isLogin ? 
          <div className="flex h-5  items-center">
@@ -44,7 +44,7 @@ function Header() {
      <header className="flex items-center justify-between">
           <SliderMenu/>
     
-     <div className="logo flex justify-center items-center">
+     <div className="logo  flex justify-center items-center">
        <h4 className="scroll-m-20 text-3xl font-semibold tracking-tight">
          elctro<span className="text-primary ">.</span>
        </h4>
@@ -58,38 +58,18 @@ function Header() {
          <MenubarTrigger className={`${location.pathname == "/shop" ||paths.includes("shop") ? "border-primary border-b-2" : ""}`}><Link to={"/shop"}>Shop</Link></MenubarTrigger>
          </MenubarMenu>
          <MenubarMenu>
-           <MenubarTrigger>Category</MenubarTrigger>
-           <MenubarContent>
-             <MenubarItem>
-               New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-             </MenubarItem>
-             <MenubarItem>New Window</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Share</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Print</MenubarItem>
-           </MenubarContent>
-         </MenubarMenu>
-         <MenubarMenu>
-           <MenubarTrigger>Feature</MenubarTrigger>
-           <MenubarContent>
-             <MenubarItem>
-               New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-             </MenubarItem>
-             <MenubarItem>New Window</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Share</MenubarItem>
-             <MenubarSeparator />
-             <MenubarItem>Print</MenubarItem>
-           </MenubarContent>
-         </MenubarMenu>
-         <MenubarMenu>
            <MenubarTrigger>Contact us </MenubarTrigger>
          </MenubarMenu>
        </Menubar>
      </div>
      <div className="header-icons mr-4 flex gap-5">
         <PopoverCom isLogin={isLogin}/>
+        <Link  className="flex items-center text-5" to={"/wish"}>
+         <span className="relative mr-3">
+           <Heart className="size-5" />
+         </span>
+      
+       </Link>
        <Link  className="flex items-center text-5" to={"/cart"}>
          <span className="relative mr-3">
            <ShoppingCart className="size-5" />

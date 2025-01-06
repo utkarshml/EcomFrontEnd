@@ -25,13 +25,13 @@
   }
   
   .slider__track {
-    background-color:var(--bg-foreground);
+    background-color: #e2e8f0;
     width: 100%;
     z-index: 1;
   }
   
   .slider__range {
-    background-color:green;
+    background-color: #fbbf24;
     z-index: 2;
     opacity: 0.5;
   }
@@ -59,11 +59,11 @@
   }
   
   .thumb {
-    pointer-events: none;
-    position: absolute;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
     height: 0;
-    width: 200px;
-    outline: none;
+    pointer-events: none;
   }
   
   .thumb--left {
@@ -100,5 +100,10 @@
     margin-top: 4px;
     pointer-events: all;
     position: relative;
+  }
+  
+  .slider__value {
+    font-size: 1rem;
+    color: #fff;
   }
   

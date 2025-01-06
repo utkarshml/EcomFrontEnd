@@ -22,7 +22,7 @@ function MyProfile() {
       <Header />
       <div className='relative  '>
         <div className="w-full ">
-           <FileInputButton classStyle='absolute bottom-2 right-2 ' fileInput={fileTakeForBanner}/>
+           <FileInputButton classStyle='absolute bottom-2 right-5 z-[999] ' fileInput={fileTakeForBanner}/>
           <img src={file} alt="Banner" className="w-full object-cover  h-[15rem]" />
         </div>
         <UserDetails updated={updated} update={setUpdate} />
@@ -51,10 +51,10 @@ const UserDetails = ({ update, updated }: prop) => {
   }
   return (
     <>
-      <div className='grid absolute top-24 w-full grid-cols-1 lg:mx-8 lg:grid-cols-3  '>
-        <div className='col-span-1 flex  lg:items-start items-center flex-col'>
+      <div className='grid absolute px-5 top-24 w-full grid-cols-1 lg:mx-8 lg:grid-cols-3  '>
+        <div className='col-span-1 px-5 flex  lg:items-start items-center flex-col'>
           <div className='w-full'>
-            <FileInputButton  classStyle='absolute top-0' fileInput={fileTakeForProfile}/>
+            <FileInputButton  classStyle='absolute  top-0' fileInput={fileTakeForProfile}/>
             <img className='h-[20rem] w-[20rem] m-auto lg:ms-0 rounded-full border-2 border-primary' src={profile} alt="" />
           </div>
           <span className='text-2xl font-bold mt-4'><span>{name}</span> <span>{last}</span></span>
@@ -83,10 +83,10 @@ const UserDetails = ({ update, updated }: prop) => {
           </Dialog>
 
         </div>
-        <div className=' py-3 px-6 col-span-2'>
+        <div className=' py-3  px-6 col-span-2'>
 
           <div className=' w-full relative hidden lg:block h-[15rem]'></div>
-          <Button onClick={() => update(!updated)} className='absolute lg:top-[13rem] top-[20rem] right-[2rem]'>
+          <Button onClick={() => update(!updated)} className='absolute lg:top-[13rem] top-[20rem] right-[4rem]'>
             {updated ? "Update" : "Cancel"}
           </Button>
           <div className='grid w-full lg:grid-cols-2 gap-4 grid-cols-1 '>
